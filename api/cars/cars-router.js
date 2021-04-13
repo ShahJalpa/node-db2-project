@@ -22,4 +22,15 @@ router.get("/:id", checkCarId, (req, res, next) => {
     res.status(200).json(req.carId);
 })
 
+//post a new car
+router.post("/", checkCarPayload, checkVinNumberUnique, checkVinNumberValid, (req, res, next) => {
+    Cars.create(req.body)
+        .then(newCar => {
+            res.status(201).json(newCar);
+        })
+        .catch(error => {
+            next(error)
+        })
+})
+
 module.exports = router
