@@ -6,11 +6,11 @@ const vinValidator = require("vin-validator");
 const checkCarId = async (req, res, next) => {
   // DO YOUR MAGIC
   try{
-    const cardId = await Cars.getById(req.params.id);
-    if(!cardId){
+    const carId = await Cars.getById(req.params.id);
+    if(!carId){
       res.status(404).json({message: `car with id ${req.params.id} is not found`})
     }else{
-      req.cardId = cardId
+      req.carId = carId
       next();
     }
   }catch (error){
